@@ -1,4 +1,4 @@
-Fix_Translate
+FixMsgCompare
 =============
 
-translate fix message
+A tool which can parse fix messages and compare two similar messages
