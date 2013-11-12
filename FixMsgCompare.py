@@ -8,7 +8,7 @@ from tkinter.constants import *
 import xml.etree.ElementTree as ET
 
 
-class FixConverter:
+class FixCompare:
     ignore_fields = ['8', '9', '34', '10']
     text_width = 70
     XMLDictFiles = []
@@ -49,7 +49,7 @@ class FixConverter:
                 self.XMLDictFiles.append(file)
                 radiolist.append(Radiobutton(left_frame, text=radio_text, variable=self.MarketOption,
                     value=len(radiolist), command=self.OnRadioSelected))
-                radiolist[-1].pack(anchor=W)
+                radiolist[-1].pack(anchor=W, side=TOP)
                 if radio_text == self.DefaultDest:
                     radiolist[-1].select()
 
@@ -58,7 +58,7 @@ class FixConverter:
         self.textIgnoreList = Text(left_frame, height=1,
                                             width=20, background='white')
         self.textIgnoreList.insert(END, ','.join(self.ignore_fields))
-        self.textIgnoreList.pack(anchor=W)
+        self.textIgnoreList.pack(anchor=W, side=TOP)
         self.textIgnoreList.bind("<KeyRelease>", self.EditUpdated)
 
         left_frame.pack(side=LEFT)
@@ -159,7 +159,6 @@ class FixConverter:
                  self.text_result.tag_config(tag_name, background= "green")
 
     def LoadSpecDictionary(self):
-        print('LoadSpecDictionary\n')
         self.TagNumDict = {}
         self.TagValueDict = {}
         xmlfile = os.path.join(sys.path[0], self.XMLDictFiles[self.MarketOption.get()])
@@ -189,7 +188,7 @@ class FixConverter:
 
 def main():
     root = Tk()
-    fix_translator = FixConverter(root)
+    fc = FixCompare(root)
     root.title('Fix Comparing')
     root.mainloop()
 main()
